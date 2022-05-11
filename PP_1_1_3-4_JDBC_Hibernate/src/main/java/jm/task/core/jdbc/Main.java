@@ -5,6 +5,8 @@ import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.Util;
+import org.hibernate.HibernateError;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -19,7 +21,12 @@ import static jm.task.core.jdbc.util.Util.createNewConnection;
 public class Main {
     public static void main(String[] args) throws SQLException {
         // реализуйте алгоритм здесь
-        Session session = createHibernateSession();
+        try (Session session = createHibernateSession();){
+
+        } catch (HibernateException e){
+            e.printStackTrace();
+        }
+
 
 
 
