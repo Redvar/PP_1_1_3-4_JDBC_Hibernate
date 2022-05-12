@@ -1,35 +1,30 @@
 package jm.task.core.jdbc;
 
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
-import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
-import jm.task.core.jdbc.util.Util;
-import org.hibernate.HibernateError;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static jm.task.core.jdbc.util.Util.createHibernateSession;
-import static jm.task.core.jdbc.util.Util.createNewConnection;
-
 public class Main {
     public static void main(String[] args) throws SQLException {
         // реализуйте алгоритм здесь
-        try (Session session = createHibernateSession();){
+                    //Hibernate
+        List<User> userList = new ArrayList<>();
+        UserServiceImpl userService = new UserServiceImpl();
 
-        } catch (HibernateException e){
-            e.printStackTrace();
-        }
+        userService.createUsersTable();
+        userService.saveUser("1vel", "vanov", (byte) 29);
+        userService.saveUser("2Pavl", "Ianov", (byte) 39);
+        userService.saveUser("3Pvel", "Ivnov", (byte) 49);
+        userService.saveUser("4Pav", "Ivano", (byte) 59);
+        userService.saveUser("5Pav", "Ivano", (byte) 59);
+        userService.removeUserById(1);
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
 
 
-
-
+                    // JDBC
 //        UserServiceImpl userService = new UserServiceImpl();
 //        List<User> userList = new ArrayList<>();
 //
